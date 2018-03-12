@@ -2,5 +2,9 @@
 
 export(credits)
 export(geocode)
+export(update_cgr)
+import(devtools)
 import(ggmap)
+import(httr)
 import(rjson)
+import(yaml)

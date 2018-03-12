@@ -130,8 +130,13 @@ geocode <- function(addresses_to_geocode, google_api_key = NA, clean = TRUE) {
 
   total <- length(addresses_to_geocode)
 
+  # Progress Bar
+  pb <- txtProgressBar(min = 0, max = total, style = 3)
+
   # Loop through the addresses
   for (i in seq(current_row, total)){
+    # Update Progress Bar
+    setTxtProgressBar(pb, i)
     # Get the gecoded info
     row <- geocode_me(addresses_to_geocode[i])
     # Append it to the data frame

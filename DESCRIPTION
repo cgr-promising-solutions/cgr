@@ -1,7 +1,7 @@
 Package: cgr
 Type: Package
 Title: Utilities CGR Staff Commonly Use
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
     person("CGR Data Science Team", "", , "datascience@cgr.org", role = c("aut", "cre")),
     person("Silva", "Mike", email = "msilva@cgr.org", role = "ctb")
@@ -16,7 +16,10 @@ Imports:
     testthat,
     ggmap,
     rjson,
-    utils
+    utils,
+    devtools,
+    yaml,
+    httr
 Suggests:
     curl (>= 0.9)
 Remotes:
