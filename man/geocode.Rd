@@ -2,7 +2,7 @@
 % Please edit documentation in R/spatial.R
 \name{geocode}
 \alias{geocode}
-\title{Geocode Wrapper}
+\title{Geocoding Tool}
 \usage{
 geocode(addresses_to_geocode, google_api_key = NA, clean = TRUE)
 }
