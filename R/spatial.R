@@ -1,7 +1,7 @@
 # Spatial Tools
 #
 
-#' Geocode Wrapper
+#' Geocoding Tool
 #'
 #' This provides a wrapper for Google's geocoding service
 #'
@@ -11,6 +11,7 @@
 #'     to stay
 #' @import rjson
 #' @import ggmap
+#' @import utils
 #' @export
 #' @examples
 #' library(cgr)
@@ -156,5 +157,5 @@ geocode <- function(addresses_to_geocode, google_api_key = NA, clean = TRUE) {
     unlink(temp_filename)
   }
 
-  message("Results are save to geocoded.csv")
+  message("\nResults are saved to geocoded.csv")
 }
