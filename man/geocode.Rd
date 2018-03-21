@@ -4,12 +4,15 @@
 \alias{geocode}
 \title{Geocoding Tool}
 \usage{
-geocode(addresses_to_geocode, google_api_key = NA, clean = TRUE)
+geocode(addresses_to_geocode, google_api_key = NA, file_name = "geocoded",
+  clean = TRUE)
 }
 \arguments{
 \item{addresses_to_geocode}{A vector of addresses}
 
 \item{google_api_key}{OPTIONAL API Key}
+
+\item{file_name}{The name of the output file (csv)}
 
 \item{clean}{TRUE if you want to delete the temp file, FALSE if you want it
 to stay}

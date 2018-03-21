@@ -7,6 +7,7 @@
 #'
 #' @param addresses_to_geocode A vector of addresses
 #' @param google_api_key OPTIONAL API Key
+#' @param file_name The name of the output file (csv)
 #' @param clean TRUE if you want to delete the temp file, FALSE if you want it
 #'     to stay
 #' @import rjson
@@ -20,7 +21,7 @@
 #' address <- c("1600 Pennsylvania Ave NW, Washington, DC 20500")
 #' geocode(address)
 #'}
-geocode <- function(addresses_to_geocode, google_api_key = NA, clean = TRUE) {
+geocode <- function(addresses_to_geocode, google_api_key = NA, file_name = 'geocoded', clean = TRUE) {
   # Check to see if we are going to use the API key or not
   use_api_key <- ifelse(is.na(google_api_key), FALSE, TRUE)
 
@@ -31,7 +32,7 @@ geocode <- function(addresses_to_geocode, google_api_key = NA, clean = TRUE) {
   # use a temporary file to hold the results.  Let's check to see if we have
   # some of the geocoding done.
 
-  temp_filename <- "geocode_temp.rds"
+  temp_filename <- paste0(file_name,"_temp.rds")
   if (file.exists(temp_filename)) {
     # Load what has been geocoded into a data frame
     geocoded <- readRDS(temp_filename)
@@ -63,6 +64,9 @@ geocode <- function(addresses_to_geocode, google_api_key = NA, clean = TRUE) {
 
   # The function geocodes a single address and returns the results
   geocode_me <- function(address){
+    if(address == ""){
+      return(c(address, "ZERO_RESULT", NA, NA, NA, NA, NA, NA, NA, NA))
+    }
     if (use_api_key){
       url <- paste0(
         "https://maps.googleapis.com/maps/api/geocode/json?address=",
@@ -148,7 +152,7 @@ geocode <- function(addresses_to_geocode, google_api_key = NA, clean = TRUE) {
 
   # Write the output
   utils::write.table(geocoded,
-              file = "geocoded.csv",
+              file = paste0(file_name, ".csv"),
               sep = ",",
               row.names = FALSE)
 
@@ -157,5 +161,5 @@ geocode <- function(addresses_to_geocode, google_api_key = NA, clean = TRUE) {
     unlink(temp_filename)
   }
 
-  message("\nResults are saved to geocoded.csv")
+  message(paste0("\nResults are saved to ", file_name, ".csv"))
 }
